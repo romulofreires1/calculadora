@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import { useState } from "react";
 import styles from "../styles/Home.module.css";
 
 export function calculate(
@@ -21,11 +22,14 @@ export function calculate(
 }
 
 const Home: NextPage = () => {
+  const [result, setResult] = useState<number>();
+
   function handleSubmit(e: any) {
     e.preventDefault();
-    console.log(
+    setResult(
       calculate(+e.target[0].value, +e.target[1].value, +e.target[2].value)
     );
+
     return null;
   }
 
@@ -43,6 +47,7 @@ const Home: NextPage = () => {
           <input id="second" type="text" />
           <button type="submit">Calculate</button>
         </form>
+        <span>{result}</span>
       </main>
     </div>
   );
